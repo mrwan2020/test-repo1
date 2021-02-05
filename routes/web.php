@@ -15,15 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    $data=[];
-    $data['name']='marwan';
-    $data['id']=4;
+return view('landing');
+});
 
-    return view('welcome',compact('data'));
-});
-Route::get('/test1', function () {
-    return 'Welcome';
-});
 Route::get('/show-number/{id}', function ($id) {
     return 'Welcome Mr. '.$id;
 }) -> name('a');
@@ -56,4 +50,19 @@ Route::get('login', function(){
 
 Route::get('index','Front\UserController@getIndex');
 
+Route::get('/landing', function(){
+    return view('landing');
+});
+
+Route::get('/about', function(){
+    return view('about');
+});
+
 Route::resource('news','NewsController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

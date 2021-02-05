@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>test Login - Index</title>
+        <title>Laravel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -66,27 +66,55 @@
     <body>
 
         <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
-                <p>
-                @foreach ($data as $item)
-                @if ($item == "marwan")
-                      Hello Mr. {{$item}}
-                        m
-                        <br>
-                        @$var marwan==4;
-                      @else
-                      your id is: {{$item}}
-                @endif 
 
-                @endforeach
-            </p>
-           
-                
-                
+                {{-- 
+                <p>{{$obj -> name }} -- {{$obj -> id}}</p>
+
+                @if ($obj -> name == 'marwan zakaria')
+                    <p>yes i'm marwan zakaria </p>
+                @else
+                    <p>you're not valid to enter </p>
+                @endif
+                 --}}
+
+                {{--
+                     @if ($name == 'marwan zakaria')
+                    <p>yes i'm marwan zakaria</p>
+                @else
+                    <p> you're not valid to enter </p>
+                @endif 
+                --}}
+                {{-- <p>
+                    @foreach ($data as $item)
+                        {{$item}}
+                    @endforeach
+                </p> --}}
+                <p>
+                    @forelse ($data as $item)
+                        {{$item}}    
+                    @empty
+                        <p>empty array  </p>
+                    @endforelse 
+                </p>
             </div>
         </div>
-    </body> 
+    </body>
 </html>
